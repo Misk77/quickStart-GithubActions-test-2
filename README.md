@@ -32,3 +32,17 @@ uses = use a actions (module).
 ❯ git commit -m "start github action"  
 
 ❯ git push  
+
+
+# Check the runners and jobs from the terminal. 
+
+> test. 
+> ❯ gh run list   
+For details on a run, try: gh run view <run-id>    
+  
+gh run view 1825414865    
+
+For more information about the job, try: 
+> gh run view --job=5145631115  
+  
+
