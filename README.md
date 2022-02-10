@@ -13,8 +13,10 @@ git push -u origin main
 
 ❯ mkdir -p .github/workflows && $_  
 ❯ vim demo.yaml  
-<pre> 
-Add the:  
+
+Now we define the workflow:  
+
+<pre>  
 name:  
 triggger on event  
 jobs:  
