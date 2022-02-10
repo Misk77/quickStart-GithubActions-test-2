@@ -11,11 +11,11 @@ git remote add origin https://github.com/Misk77/quickStart-GithubActions-test-2.
 git push -u origin main
 
 
-❯ mkdir -p .github/workflows && $_
-❯ vim demo.yaml
+❯ mkdir -p .github/workflows && $_  
+❯ vim demo.yaml  
 
 
-❯ git add .
-❯ git commit -m "start github action"
+❯ git add .  
+❯ git commit -m "start github action"  
 
-❯ git push
+❯ git push  
