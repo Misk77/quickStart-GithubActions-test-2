@@ -36,7 +36,6 @@ uses = use a actions (module).
 
 # Check the runners and jobs from the terminal. 
 
-> test. 
 > ❯ gh run list   
 For details on a run, try: gh run view <run-id>    
   
