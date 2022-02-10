@@ -22,10 +22,8 @@ jobs:
     steps, actions to do  
     
 
-run = command inside the environment 
-uses = use a actions (module). 
-
-  
+run = command inside the environment  
+uses = use a actions (module).   
 
 ❯ git add .  
 ❯ git commit -m "start github action"  
