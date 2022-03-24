@@ -1,4 +1,4 @@
-name: quickStart-GithubActions-test-2
+name: slack-notification
 
 on:
   push:
@@ -25,7 +25,7 @@ jobs:
         SLACK_CHANNEL: C038JK97W1G
         SLACK_COLOR: ${{ job.status }} # or a specific color like 'good' or '#ff00ff'
         SLACK_ICON: https://github.com/rtCamp.png?size=48
-        SLACK_TITLE: FIX ME atg-solace-credentials
+        SLACK_TITLE: FIX ME slack-notification-fail
         SLACK_WEBHOOK: ${{ secrets.MICHEL_TEST_SLACK_TOKEN }}
         SLACK_WEBHOOK_TYPE: Michels-solace-order
 
@@ -37,6 +37,6 @@ jobs:
         SLACK_CHANNEL: C038JK97W1G
         SLACK_COLOR: ${{ job.status }} # or a specific color like 'good' or '#ff00ff'
         SLACK_ICON: https://github.com/rtCamp.png?size=48
-        SLACK_TITLE: Updating repo atg-solace-credentials
+        SLACK_TITLE: Updating repo slack-notification-success
         SLACK_WEBHOOK: ${{ secrets.MICHEL_TEST_SLACK_TOKEN }}
         SLACK_WEBHOOK_TYPE: Michels-solace-order
