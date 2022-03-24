@@ -1,4 +1,4 @@
-#sdasd quickStart-GithubActions-test-2
+ewwew:1#sdasd quickStart-GithubActions-test-2
 
 ❯ gh repo create quickStart-GithubActions-test-2 --public
 
