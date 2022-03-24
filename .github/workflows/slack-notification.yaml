@@ -1,7 +1,7 @@
 name: quickStart-GithubActions-test-2
 
 on:
-  pull_request:
+  push:
     branches:
       - master
   
