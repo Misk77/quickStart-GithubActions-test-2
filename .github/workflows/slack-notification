@@ -1,0 +1,42 @@
+name: quickStart-GithubActions-test-2
+
+on:
+  pull_request:
+    branches:
+      - master
+  
+
+jobs:
+  slackNotification:
+    name: Slack Notification
+    runs-on: ubuntu-20.04
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: List files in the repository
+      run: |
+          ls -lah ${{ github.workspace }}
+    
+    - name: Slack Notification Failure
+      uses: rtCamp/action-slack-notify@v2
+      if: ${{ failure() }}
+      env:
+        SLACK_MESSAGE: "FAILURE...."
+        SLACK_CHANNEL: C038JK97W1G
+        SLACK_COLOR: ${{ job.status }} # or a specific color like 'good' or '#ff00ff'
+        SLACK_ICON: https://github.com/rtCamp.png?size=48
+        SLACK_TITLE: FIX ME atg-solace-credentials
+        SLACK_WEBHOOK: ${{ secrets.MICHEL_TEST_SLACK_TOKEN }}
+        SLACK_WEBHOOK_TYPE: Michels-solace-order
+
+    - name: Slack Notification Sucess
+      uses: rtCamp/action-slack-notify@v2
+      if: ${{ success() }}
+      env:
+        SLACK_MESSAGE: "SUCCESS"
+        SLACK_CHANNEL: C038JK97W1G
+        SLACK_COLOR: ${{ job.status }} # or a specific color like 'good' or '#ff00ff'
+        SLACK_ICON: https://github.com/rtCamp.png?size=48
+        SLACK_TITLE: Updating repo atg-solace-credentials
+        SLACK_WEBHOOK: ${{ secrets.MICHEL_TEST_SLACK_TOKEN }}
+        SLACK_WEBHOOK_TYPE: Michels-solace-order
