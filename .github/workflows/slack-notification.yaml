@@ -6,7 +6,7 @@ on:
       - master
     
 env: 
-  SLACK_TOKEN: ${{ secrets.MICHEL_TEST_SLACK_TOKEN }}
+  SLACK_TOKEN: secrets.MICHEL_TEST_SLACK_TOKEN
   
 
 jobs:
