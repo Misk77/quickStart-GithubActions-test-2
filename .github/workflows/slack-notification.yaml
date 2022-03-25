@@ -7,6 +7,10 @@ on:
     
 env: 
   SLACK_TOKEN: ${{ secrets.MICHEL_TEST_SLACK_TOKEN }}
+  ANSIBLE_CONFIG: 'solace-ansible/ansible.cfg'
+  VAULT_LAB_CREDENTIAL: credentials('Ansible_lab_vault_Password')
+  VAULT_MGMT_lab_CREDENTIAL: credentials('SOLACE_LAB_MGMT_CREDENTIALS')
+  FILE_lab: '/var/lib/jenkins/ansible-vault/.vault_lab_secret'
   
 
 jobs:
@@ -19,6 +23,28 @@ jobs:
     - name: List files in the repository
       run: |
           ls -lah ${{ github.workspace }}
+    
+    - name: Yaml Lint
+      run: |
+          ./py.yaml.lint.sh')
+          
+    - name: DEPLOY
+      run: | 
+         sh 'echo "Start stage deploy"'
+                sh 'echo $VAULT_LAB_CREDENTIAL > $HOME/ansible-vault/.vault_lab_secret'
+                sh 'cat $HOME/ansible-vault/.vault_lab_secret'
+                sh 'echo "Vault cred done "'
+
+                sh 'echo "semp_password:" $VAULT_MGMT_lab_CREDENTIAL > $HOME/ansible-vault/ansible_variable.enc'
+                sh 'cat $HOME/ansible-vault/ansible_variable.enc'
+                sh 'echo "MGMT cred done "'
+
+                sh('python ./solace-ansible/run.solace.config-lab.py')
+                sh 'cat $HOME/ansible-vault/.vault_lab_secret'
+                sh 'cat $HOME/ansible-vault/ansible_variable.enc'
+                sh 'echo "END stage deploy"'
+          
+      
     
     - name: Slack Notification Failure
       uses: rtCamp/action-slack-notify@v2
