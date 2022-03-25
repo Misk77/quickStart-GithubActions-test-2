@@ -4,6 +4,9 @@ on:
   push:
     branches:
       - master
+    
+env: 
+  SLACK_TOKEN: ${{ secrets.MICHEL_TEST_SLACK_TOKEN }}
   
 
 jobs:
@@ -26,7 +29,7 @@ jobs:
         SLACK_COLOR: ${{ job.status }} # or a specific color like 'good' or '#ff00ff'
         SLACK_ICON: https://github.com/rtCamp.png?size=48
         SLACK_TITLE: FIX ME slack-notification-fail
-        SLACK_WEBHOOK: ${{ secrets.MICHEL_TEST_SLACK_TOKEN }}
+        SLACK_WEBHOOK: ${{ SLACK_TOKEN }}
         SLACK_WEBHOOK_TYPE: Michels-solace-order
 
     - name: Slack Notification Sucess
@@ -38,5 +41,5 @@ jobs:
         SLACK_COLOR: ${{ job.status }} # or a specific color like 'good' or '#ff00ff'
         SLACK_ICON: https://github.com/rtCamp.png?size=48
         SLACK_TITLE: Updating repo slack-notification-success-1839
-        SLACK_WEBHOOK: ${{ secrets.MICHEL_TEST_SLACK_TOKEN }}
+        SLACK_WEBHOOK: ${{ SLACK_TOKEN }}
         SLACK_WEBHOOK_TYPE: Michels-solace-order
