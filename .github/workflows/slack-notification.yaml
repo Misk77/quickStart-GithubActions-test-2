@@ -18,7 +18,7 @@ jobs:
     - name: checkout repo
       uses: actions/checkout@v2
       with:
-        repository: 'Misk77/quickStart-GithubActions-test-2.git'
+        repository: 'Misk77/quickStart-GithubActions-test-2'
         path: 'GithubActions-test-2'
 
     - name: List files in the repository
