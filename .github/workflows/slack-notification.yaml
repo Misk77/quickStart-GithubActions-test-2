@@ -23,8 +23,10 @@ jobs:
 
     - name: List files in the repository
       run: |
-          ls -lah ${{ github.workspace }}
-          ls -lah GithubActions-test-2 
+        echo "ls github.workspace"
+        ls -lah ${{ github.workspace }}
+        echo "ls "path: 'GithubActions-test-2'"
+        ls -lah GithubActions-test-2 
     
     - name: Slack Notification Failure
       uses: rtCamp/action-slack-notify@v2
