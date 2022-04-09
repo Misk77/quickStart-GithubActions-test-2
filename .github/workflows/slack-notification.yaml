@@ -4,47 +4,27 @@ on:
   push:
     branches:
       - master
-    
-env: 
+
+env:
   SLACK_TOKEN: ${{ secrets.MICHEL_TEST_SLACK_TOKEN }}
-  ANSIBLE_CONFIG: 'solace-ansible/ansible.cfg'
-  VAULT_LAB_CREDENTIAL: credentials('Ansible_lab_vault_Password')
-  VAULT_MGMT_lab_CREDENTIAL: credentials('SOLACE_LAB_MGMT_CREDENTIALS')
-  FILE_lab: '/var/lib/jenkins/ansible-vault/.vault_lab_secret'
   
 
 jobs:
   slackNotification:
     name: Slack Notification
     runs-on: ubuntu-20.04
+
     steps:
-    - uses: actions/checkout@v2
+    - name: checkout repo
+      uses: actions/checkout@v2
+      with:
+        repository: 'git@github.com:Misk77/quickStart-GithubActions-test-2.git'
+        path: 'GithubActions-test-2'
 
     - name: List files in the repository
       run: |
           ls -lah ${{ github.workspace }}
-    
-    - name: Yaml Lint
-      run: |
-          ./py.yaml.lint.sh')
-          
-    - name: DEPLOY
-      run: | 
-         sh 'echo "Start stage deploy"'
-                sh 'echo $VAULT_LAB_CREDENTIAL > $HOME/ansible-vault/.vault_lab_secret'
-                sh 'cat $HOME/ansible-vault/.vault_lab_secret'
-                sh 'echo "Vault cred done "'
-
-                sh 'echo "semp_password:" $VAULT_MGMT_lab_CREDENTIAL > $HOME/ansible-vault/ansible_variable.enc'
-                sh 'cat $HOME/ansible-vault/ansible_variable.enc'
-                sh 'echo "MGMT cred done "'
-
-                sh('python ./solace-ansible/run.solace.config-lab.py')
-                sh 'cat $HOME/ansible-vault/.vault_lab_secret'
-                sh 'cat $HOME/ansible-vault/ansible_variable.enc'
-                sh 'echo "END stage deploy"'
-          
-      
+          ls -lah GithubActions-test-2 
     
     - name: Slack Notification Failure
       uses: rtCamp/action-slack-notify@v2
@@ -55,7 +35,7 @@ jobs:
         SLACK_COLOR: ${{ job.status }} # or a specific color like 'good' or '#ff00ff'
         SLACK_ICON: https://github.com/rtCamp.png?size=48
         SLACK_TITLE: FIX ME slack-notification-fail
-        SLACK_WEBHOOK: ${{ secrets.MICHEL_TEST_SLACK_TOKEN }}
+        SLACK_WEBHOOK: ${{ SLACK_TOKEN }}
         SLACK_WEBHOOK_TYPE: Michels-solace-order
 
     - name: Slack Notification Sucess
@@ -67,5 +47,5 @@ jobs:
         SLACK_COLOR: ${{ job.status }} # or a specific color like 'good' or '#ff00ff'
         SLACK_ICON: https://github.com/rtCamp.png?size=48
         SLACK_TITLE: Updating repo slack-notification-success-1839
-        SLACK_WEBHOOK: ${{ secrets.MICHEL_TEST_SLACK_TOKEN }}
+        SLACK_WEBHOOK: ${{ SLACK_TOKEN }}
         SLACK_WEBHOOK_TYPE: Michels-solace-order
