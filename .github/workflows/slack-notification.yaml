@@ -25,7 +25,7 @@ jobs:
       run: |
         echo "ls github.workspace"
         ls -lah ${{ github.workspace }}
-        echo "ls "path: 'GithubActions-test-2'"
+        echo "ls path: 'GithubActions-test-2"
         ls -lah GithubActions-test-2 
     
     - name: Slack Notification Failure
